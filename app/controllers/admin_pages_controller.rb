@@ -1,6 +1,8 @@
-class AdminPagesController < ApplicationController
-  before_filter :authenticate_admin!
+# frozen_string_literal: true
 
-  def dashboard
-  end
+# Controller for Admin model
+class AdminPagesController < ApplicationController
+  before_action :authenticate_admin!
+
+  def dashboard; end
 end
