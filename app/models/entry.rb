@@ -4,4 +4,12 @@
 # Contains information about what is the user doing and when they started
 class Entry < ApplicationRecord
   belongs_to :user
+
+  validates :type, presence: true
+  validates :comment, presence: true
+
+  # Sıkıntı olur mu diye kontrol et
+  def finished?
+    !!finished_at
+  end
 end
