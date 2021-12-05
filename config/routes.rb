@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :entries
+  devise_for :admins
   devise_for :users
+
+  resources :entries
   get 'home/index'
+
+  authenticated :admin do
+    get 'admin_pages/dashboard'
+    root "admin_pages#dashboard", as: "administration"
+  end
 
   # if user_signed_in?
   #   root "entry#index"
