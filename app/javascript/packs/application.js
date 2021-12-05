@@ -11,3 +11,10 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "foundation-sites"
+require("src/application")
+
+$(document).on("turbolinks:load", () => {
+  $(document).foundation()
+})
