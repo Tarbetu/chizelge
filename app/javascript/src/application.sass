@@ -1,3 +1,12 @@
 @import "~foundation-sites/scss/foundation"
-@include foundation-everything
+@include foundation-everything(true)
 @import "~motion-ui/motion-ui"
+
+body
+  background-color: linen
+
+#mainPage
+  @include flex
+  @include flex-direction(column)
+  @include flex-align(center, center)
+  @include position(fixed, 10, 5, 10, 5)

@@ -8,4 +8,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :entries
+
+  def last_work
+    entries.last
+  end
+
+  def working?
+    return false if entries.last.nil?
+
+    !entries.last.finished?
+  end
 end

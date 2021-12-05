@@ -12,9 +12,9 @@ Rails.application.routes.draw do
     root "admin_pages#dashboard", as: "administration"
   end
 
-  # if user_signed_in?
-  #   root "entry#index"
-  # else
+  authenticated :user do
+    root "entries#index", as: "user_index"
+  end
+
   root "home#index"
-  # end
 end

@@ -1,25 +1,38 @@
-%h1 Listing entries
-
-%table
-  %thead
-    %tr
-      %th Comment
-      %th Type
-      %th Finished at
-      %th
-      %th
-      %th
-
-  %tbody
-    - @entries.each do |entry|
-      %tr
-        %td= entry.comment
-        %td= entry.type
-        %td= entry.finished_at
-        %td= link_to 'Show', entry
-        %td= link_to 'Edit', edit_entry_path(entry)
-        %td= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Entry', new_entry_path
+- user = User.find(current_user["id"])
+.accordion{ "data-accordion": true }
+  .accordion-item.is-active{ "data-accordion-item": true }
+    %a.accordion-title Working Status
+    .accordion-content{ "data-tab-content": true }
+      - if user.working?
+        %h2 You're working!
+        %h5 user.last_work.type
+        %h5 user.last_work.comment
+        %a Finish work!
+      - else
+        %h2 You're not working now!
+        = link_to "Start working", new_entry_path
+        %blockquote
+          “Stillness, the ruler of movement.”
+          %cite Lao Tzu, Tao Te Ching
+  .accordion-item{ "data-accordion-item": true }
+    %a.accordion-title Recent Entries
+    .accordion-content{ "data-tab-content": true }
+      %h2 Listing entries
+      %table
+        %thead
+          %tr
+            %th Type
+            %th Comment
+            %th Finished at
+            %th Worked for
+            %th
+            %th
+        %tbody
+          - @entries.filter(&:finished?).each do |entry|
+            %tr
+              %td= entry.type
+              %td= entry.comment
+              %td= entry.finished_at
+              %td
+              %td= link_to 'Edit', edit_entry_path(entry)
+              %td= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }
