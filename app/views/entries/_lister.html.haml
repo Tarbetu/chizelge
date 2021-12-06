@@ -1,0 +1,20 @@
+%h2 Listing entries
+%table
+  %thead
+    %tr
+      %th Category
+      %th Comment
+      %th Finished at
+      %th Worked for (min)
+      %th
+      %th
+  %tbody
+    - entries.filter(&:finished?).each do |entry|
+      %tr
+        %td= entry.category
+        %td= entry.comment
+        %td= entry.finished_at
+        %td= (entry.finished_at - entry.created_at).round / 60
+        %td= link_to 'Edit', edit_entry_path(entry)
+        %td= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }
+
