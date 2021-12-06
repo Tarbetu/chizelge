@@ -4,6 +4,7 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_entry, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[create finish]
 
   # GET /entries or /entries.json
   def index
@@ -24,7 +25,7 @@ class EntriesController < ApplicationController
   # POST /entries or /entries.json
   def create
     @entry = Entry.new(entry_params)
-    @entry.user = User.find(current_user["id"])
+    @entry.user = @user
 
     respond_to do |format|
       if @entry.save
@@ -59,9 +60,18 @@ class EntriesController < ApplicationController
     end
   end
 
-  # POST /entries/1/finish
+  # POST /entries/finish
   def finish
-    raise "Vay başımıza gelenler"
+    @entry = @user.last_work
+
+    # Bu kesin arıza yaratır :d
+    @entry.finished_at = Time.now
+
+    @entry.save
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Well done!" }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -69,6 +79,11 @@ class EntriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_entry
     @entry = Entry.find(params[:id])
+  end
+
+  # Define the devise user
+  def set_user
+    @user = User.find(current_user["id"])
   end
 
   # Only allow a list of trusted parameters through.

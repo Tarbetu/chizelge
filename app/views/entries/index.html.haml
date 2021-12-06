@@ -9,12 +9,14 @@
           - last_work = user.last_work
           %h5= last_work.comment
           %h5= last_work.category
-          = form_with model: last_work do |form|
-            = form.time_select :finished_at
+          -# Buna bir el at bakam
+          = form_with url: "/entries/finish" do |form|
             = form.submit "End working"
       - else
         %h2 You're not working now!
-        = link_to "Start working", new_entry_path
+        #links
+          = link_to "Start working", new_entry_path
+          = link_to "Log out", destroy_user_session_path, method: :delete
         %blockquote
           “Stillness, the ruler of movement.”
           %cite Lao Tzu, Tao Te Ching
@@ -25,18 +27,19 @@
       %table
         %thead
           %tr
-            %th Type
+            %th Category
             %th Comment
             %th Finished at
-            %th Worked for
+            %th Worked for (min)
             %th
             %th
         %tbody
           - @entries.filter(&:finished?).each do |entry|
             %tr
-              %td= entry.type
+              %td= entry.category
               %td= entry.comment
               %td= entry.finished_at
-              %td
+              %td= (entry.finished_at - entry.created_at).round / 60
               %td= link_to 'Edit', edit_entry_path(entry)
               %td= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }
+
