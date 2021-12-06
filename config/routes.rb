@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     root "entries#index", as: "user_index"
   end
 
+  get "admin_pages/dashboard", as: "admin_panel"
   get 'home/index'
   root "home#index"
 end

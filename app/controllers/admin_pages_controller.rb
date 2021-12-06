@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-# Controller for Admin model
+# Controller for Users with "Admin" role
 class AdminPagesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
 
-  def dashboard; end
+  def dashboard
+    redirect_to root_path unless User.find(current_user["id"]).admin?
+  end
 end
