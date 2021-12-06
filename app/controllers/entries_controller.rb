@@ -63,8 +63,6 @@ class EntriesController < ApplicationController
   # POST /entries/finish
   def finish
     @entry = @user.last_work
-
-    # Bu kesin arıza yaratır :d
     @entry.finished_at = Time.now
 
     @entry.save

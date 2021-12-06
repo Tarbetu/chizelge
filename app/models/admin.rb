@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# The model for website administrators
+# Check for db/seeds.rb file to first admin.
 class Admin < ApplicationRecord
   extend Devise::Models
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :rememberable, :validatable
+
+  devise :database_authenticatable, :rememberable
 end
