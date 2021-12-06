@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :entries
+  post "entries/:id/finish"
+
   get 'home/index'
 
   authenticated :admin do

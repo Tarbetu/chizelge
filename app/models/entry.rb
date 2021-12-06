@@ -5,7 +5,7 @@
 class Entry < ApplicationRecord
   belongs_to :user
 
-  validates :type, presence: true
+  validates :category, presence: true
   validates :comment, presence: true
 
   # Sıkıntı olur mu diye kontrol et

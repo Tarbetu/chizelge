@@ -24,10 +24,11 @@ class EntriesController < ApplicationController
   # POST /entries or /entries.json
   def create
     @entry = Entry.new(entry_params)
+    @entry.user = User.find(current_user["id"])
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: "Entry was successfully created." }
+        format.html { redirect_to root_path, notice: "Entry was successfully created." }
         format.json { render :show, status: :created, location: @entry }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -56,6 +57,11 @@ class EntriesController < ApplicationController
       format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  # POST /entries/1/finish
+  def finish
+    raise "Vay başımıza gelenler"
   end
 
   private

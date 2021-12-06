@@ -1,13 +1,17 @@
-- user = User.find(current_user["id"])
-.accordion{ "data-accordion": true }
+.accordion{ "data-accordion": true, "data-multi-expand": "true" }
   .accordion-item.is-active{ "data-accordion-item": true }
     %a.accordion-title Working Status
     .accordion-content{ "data-tab-content": true }
+      - user = User.find(current_user["id"])
       - if user.working?
         %h2 You're working!
-        %h5 user.last_work.type
-        %h5 user.last_work.comment
-        %a Finish work!
+        .callout
+          - last_work = user.last_work
+          %h5= last_work.comment
+          %h5= last_work.category
+          = form_with model: last_work do |form|
+            = form.time_select :finished_at
+            = form.submit "End working"
       - else
         %h2 You're not working now!
         = link_to "Start working", new_entry_path
