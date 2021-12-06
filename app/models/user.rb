@@ -18,4 +18,8 @@ class User < ApplicationRecord
 
     !entries.last.finished?
   end
+
+  def admin?
+    role == "admin"
+  end
 end
