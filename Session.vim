@@ -17,9 +17,9 @@ tabnew
 tabnew
 tabnew
 tabrewind
-edit app/controllers/entries_controller.rb
+edit config/routes.rb
 argglobal
-balt app/models/entry.rb
+balt app/controllers/entries_controller.rb
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -30,12 +30,32 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 51 - ((2 * winheight(0) + 22) / 45)
+let s:l = 7 - ((6 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 51
+keepjumps 7
 normal! 0
+tabnext
+edit app/models/admin.rb
+argglobal
+balt config/routes.rb
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 25 - ((24 * winheight(0) + 23) / 47)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 25
+normal! 018|
 tabnext
 edit app/models/entry.rb
 argglobal
@@ -50,12 +70,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 8 - ((7 * winheight(0) + 22) / 45)
+let s:l = 11 - ((10 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 8
-normal! 021|
+keepjumps 11
+normal! 07|
 tabnext
 edit app/views/entries/index.html.haml
 argglobal
@@ -70,7 +90,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 19 - ((18 * winheight(0) + 22) / 45)
+let s:l = 19 - ((18 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -90,38 +110,20 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 16 - ((15 * winheight(0) + 22) / 45)
+let s:l = 16 - ((15 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 16
 normal! 032|
-tabnext
-edit bin/rails
-argglobal
-balt app/javascript/src/application.sass
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-tabnext 5
+tabnext 2
 set stal=1
-badd +82 app/controllers/entries_controller.rb
+badd +51 app/controllers/entries_controller.rb
 badd +8 app/models/entry.rb
 badd +31 app/views/entries/index.html.haml
-badd +0 yapılacak.txt
+badd +12 app/javascript/src/application.sass
+badd +0 bin/rails
+badd +1 yapılacak.txt
 badd +13 app/views/entries/_form.html.haml
 badd +53 db/schema.rb
 badd +1 app/controllers/admin_pages_controller.rb
@@ -130,15 +132,13 @@ badd +18 app/views/devise/shared/_links.html.haml
 badd +13 config/routes.rb
 badd +4 app/views/home/index.html.haml
 badd +2 app/views/devise/registrations/new.html.haml
-badd +12 app/javascript/src/application.sass
 badd +1 Gemfile
 badd +13 app/models/user.rb
 badd +1 app/javascript/packs/application.js
 badd +1 app/views/entries/_entry.json.jbuilder
 badd +39 .gitignore
 badd +10 app/views/entries/show.html.haml
-badd +5 app/models/admin.rb
-badd +0 bin/rails
+badd +21 app/models/admin.rb
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -150,6 +150,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
