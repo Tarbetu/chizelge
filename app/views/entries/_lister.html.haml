@@ -17,4 +17,4 @@
         %td= (entry.finished_at - entry.created_at).round / 60
         %td= link_to 'Edit', edit_entry_path(entry)
         %td= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }
-      = raw pagy_foundation_nav(pagy)
+    = raw pagy_foundation_nav(pagy)

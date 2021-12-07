@@ -11,7 +11,7 @@
           %h5= last_work.category
           -# Buna bir el at bakam
           = form_with url: "/entries/finish" do |form|
-            = form.submit "End working"
+            = form.submit "End working", class: "button"
       - else
         %h2 You're not working now!
         #links
