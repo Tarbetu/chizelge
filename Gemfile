@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # My Stack
 gem "devise"
 gem "haml-rails", "~> 2.0"
+gem 'pagy', '~> 5.6'
