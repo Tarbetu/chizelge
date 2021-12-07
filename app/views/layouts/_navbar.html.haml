@@ -5,6 +5,6 @@
   .top-bar-right
     %ul.menu
       - if User.find(current_user["id"]).admin?
-        %li= link_to "Admin panel", admin_panel_path
+        %li= link_to "Admin panel", admin_pages_panel_path
       %li
         = button_to "Log out!", destroy_user_session_path, class: "button", method: :delete
