@@ -1,7 +1,8 @@
-%h2 Listing entries
 %table
   %thead
     %tr
+      - if admin
+        %th Email
       %th Category
       %th Comment
       %th Finished at
@@ -11,6 +12,8 @@
   %tbody
     - entries.filter(&:finished?).each do |entry|
       %tr
+        - if admin
+          %td= entry.user.email
         %td= entry.category
         %td= entry.comment
         %td= entry.finished_at

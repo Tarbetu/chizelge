@@ -6,5 +6,7 @@ class AdminPagesController < ApplicationController
 
   def dashboard
     redirect_to root_path unless User.find(current_user["id"]).admin?
+
+    @list_everyting = pagy Entry.everything
   end
 end

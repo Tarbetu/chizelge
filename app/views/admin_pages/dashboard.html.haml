@@ -1,9 +1,25 @@
 %ul.accordion{ "data-accordion": true, "data-multi-expand": "true" }
-  %li.accordion-item{ "data-accordion-item": true }
-    %a.accordion-title{ href:"#" } Email Adresine Göre Ara
+  %li.accordion-item.is-active{ "data-accordion-item": true }
+    %a.accordion-title{ href:"#" } Search by Email
     .accordion-content{ "data-tab-content": true }
-      Naber :d Buraya form gelecek :d
+      -# Naber :d Buraya form gelecek :d
+      -# Dört sekme var, emaile göre, zamana göre, kategoriye göre arama ve her şeyi sırala
+      %ul.tabs#adminNavigation{ "data-tabs": true }
+        %li.tabs-title.is-active
+          %a{ href: "#byEmail", "aria-selected": "true"} By Email
+        %li.tabs-title
+          %a{ href: "#byCategory" } By Category
+        %li.tabs-title
+          %a{ href: "#byTime" } By Time
+        %li.tabs-title
+          %a{ href: "#listEveryting" } List Everything
+      .tabs-content{ "data-tabs-content": "adminNavigation" }
+        .tabs-panel.is-active#byEmail Emaile göre :d
+        .tabs-panel#byCategory Kategoriye göre :d
+        .tabs-panel#byTime Zamana göre :d
+        .tabs-panel#listEveryting
+          = render "entries/lister", pagy: @list_everyting[0], entries: @list_everyting[1], admin: true
   %li.accordion-item{ "data-accordion-item": true }
-    %a.accordion-title{ href: "#" } İstatistikler
+    %a.accordion-title{ href: "#" } Statistics
     .accordion-content{ "data-tab-content": true }
       İşte ne kadar kullanıcı var, toplam kaç saat gibi acayip şeyler işte

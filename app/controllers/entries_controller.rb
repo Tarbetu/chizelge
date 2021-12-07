@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
 
   # GET /entries or /entries.json
   def index
-    @pagy, @entries = pagy Entry.all.order("created_at DESC")
+    @pagy, @entries = pagy Entry.order("created_at DESC")
   end
 
   # GET /entries/1 or /entries/1.json

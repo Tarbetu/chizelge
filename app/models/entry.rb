@@ -11,4 +11,8 @@ class Entry < ApplicationRecord
   def finished?
     !!finished_at
   end
+
+  def self.everything
+    order("created_at DESC")
+  end
 end
