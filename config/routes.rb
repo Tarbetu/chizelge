@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :admin_pages do
     get "dashboard", as: "panel"
     get "result"
+    post "setadmin"
   end
 
   get 'home/index'

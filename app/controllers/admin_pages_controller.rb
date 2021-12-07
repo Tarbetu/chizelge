@@ -32,6 +32,17 @@ class AdminPagesController < ApplicationController
     )
   end
 
+  # POST /admin_pages/setadmin
+  def setadmin
+    email_address = params[:email]
+    @user = User.find_by(email: email_address)
+    if @user.toggle_adminship
+      redirect_to admin_pages_panel_path, notice: "The role of #{@user.email} has been changed"
+    else
+      redirect_to admin_pages_panel_path, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def parsing_param_to_datetime(date_type)

@@ -22,4 +22,12 @@ class User < ApplicationRecord
   def admin?
     role == "admin"
   end
+
+  def toggle_adminship
+    @role = if admin?
+              ""
+            else
+              "admin"
+            end
+  end
 end

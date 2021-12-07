@@ -13,8 +13,8 @@
         .tabs-panel.is-active#search
           = form_with url: admin_pages_result_path, method: :get do |form|
             %small
-              For multisearching, type the emails and the categories with spaces
-              <br>
+              For multiple searches, type the emails and the categories with spaces.
+              <br/>
               E.g: example@example.com example1@example.com
             = form.label :email
             = form.text_field :email, placeholder: "example@example.com example1.example.com"
@@ -32,5 +32,11 @@
   %li.accordion-item{ "data-accordion-item": true }
     %a.accordion-title{ href: "#" } Admin Management 
     .accordion-content{ "data-tab-content": true}
-      Buradan admin eklenip kaldırılır
-    
+      = form_with url: admin_pages_setadmin_path do |form|
+        %small
+          You can set the admins with this form.
+          <br>
+          If you type an admin's email, you will degrade them to regular users.
+        = form.label :email
+        = form.text_field :email, placeholder: "admin@example.com"
+        = form.submit "Convert the user", class: "button"
