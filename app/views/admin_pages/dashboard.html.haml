@@ -6,20 +6,11 @@
       -# Dört sekme var, emaile göre, zamana göre, kategoriye göre arama ve her şeyi sırala
       %ul.tabs#adminNavigation{ "data-tabs": true }
         %li.tabs-title.is-active
-          %a{ href: "#byEmail", "aria-selected": "true"} By Email
-        %li.tabs-title
-          %a{ href: "#byCategory" } By Category
-        %li.tabs-title
-          %a{ href: "#byTime" } By Time
+          %a{ href: "#search" } Search
         %li.tabs-title
           %a{ href: "#listEveryting" } List Everything
       .tabs-content{ "data-tabs-content": "adminNavigation" }
-        .tabs-panel.is-active#byEmail
-          = form_with url: admin_pages_result_path do |form|
-            = form.text_field :email
-            = form.submit "Search", class: "button"
-        .tabs-panel#byCategory Kategoriye göre :d
-        .tabs-panel#byTime Zamana göre :d
+        .tabs-panel.is-active#search Ara işte
         .tabs-panel#listEveryting
           = render "entries/lister", pagy: @list_everyting[0], entries: @list_everyting[1], admin: true
   %li.accordion-item{ "data-accordion-item": true }

@@ -15,8 +15,4 @@ class Entry < ApplicationRecord
   def self.everything
     order "created_at DESC"
   end
-
-  def self.query_by_email(email)
-    find_by(email: email)
-  end
 end
