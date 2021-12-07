@@ -14,7 +14,10 @@
         %li.tabs-title
           %a{ href: "#listEveryting" } List Everything
       .tabs-content{ "data-tabs-content": "adminNavigation" }
-        .tabs-panel.is-active#byEmail Emaile göre :d
+        .tabs-panel.is-active#byEmail
+          = form_with url: admin_pages_result_path do |form|
+            = form.text_field :email
+            = form.submit "Search", class: "button"
         .tabs-panel#byCategory Kategoriye göre :d
         .tabs-panel#byTime Zamana göre :d
         .tabs-panel#listEveryting

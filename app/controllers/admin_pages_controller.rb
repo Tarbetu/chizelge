@@ -11,9 +11,6 @@ class AdminPagesController < ApplicationController
     @list_everyting = pagy Entry.everything
   end
 
-  # POST /admin_pages/result
-  def search; end
-
   # GET /admin_pages/result
   def result; end
 end
