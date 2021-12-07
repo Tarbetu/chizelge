@@ -2,21 +2,33 @@
   %li.accordion-item.is-active{ "data-accordion-item": true }
     %a.accordion-title{ href:"#" } Search by Email
     .accordion-content{ "data-tab-content": true }
-      -# Naber :d Buraya form gelecek :d
-      -# Dört sekme var, emaile göre, zamana göre, kategoriye göre arama ve her şeyi sırala
       %ul.tabs#adminNavigation{ "data-tabs": true }
         %li.tabs-title.is-active
-          %a{ href: "#search" } Search
+          %a{ href: "#search" }
+            %b Search
         %li.tabs-title
-          %a{ href: "#listEveryting" } List Everything
+          %a{ href: "#listEveryting" } 
+            %b List Everything
       .tabs-content{ "data-tabs-content": "adminNavigation" }
-        .tabs-panel.is-active#search Ara işte
+        .tabs-panel.is-active#search
+          = form_with url: admin_pages_result_path, method: :get do |form|
+            %small
+              For multisearching, type the emails and the categories with spaces
+              <br>
+              E.g: example@example.com example1@example.com
+            = form.label :email
+            = form.text_field :email, placeholder: "example@example.com example1.example.com"
+            = form.label :category
+            = form.text_field :category, placeholder: "testing coding training"
+            .callout
+              = form.label :from
+              = form.datetime_select :from
+            .callout
+              = form.label :end
+              = form.datetime_select :end
+            = form.submit "Search", class: "button"
         .tabs-panel#listEveryting
           = render "entries/lister", pagy: @list_everyting[0], entries: @list_everyting[1], admin: true
-  %li.accordion-item{ "data-accordion-item": true }
-    %a.accordion-title{ href: "#" } Statistics
-    .accordion-content{ "data-tab-content": true }
-      İşte ne kadar kullanıcı var, toplam kaç saat gibi acayip şeyler işte
   %li.accordion-item{ "data-accordion-item": true }
     %a.accordion-title{ href: "#" } Admin Management 
     .accordion-content{ "data-tab-content": true}
