@@ -22,5 +22,4 @@
   .accordion-item{ "data-accordion-item": true }
     %a.accordion-title Recent Entries
     .accordion-content{ "data-tab-content": true }
-      = render "lister", entries: @entries
-
+      = render "lister", entries: @entries, pagy: @pagy
