@@ -1,24 +1,16 @@
-# README
+# Chizelge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Chizelge is a Toggl-like application coded with Rails. The name comes from a Turkish word, "Çizelge" which means "Schedule". The application helps you to manage your time and keep how much time of you spend on work. Also, adminastrators can track the time of users. 
 
-Things you may want to cover:
+Foundation from ZURB and HAML used heavily on the frontend.
 
-* Ruby version
+# Dependencies
 
-* System dependencies
+* Ruby 3.0.0 or later
+* PostgreSQL as a soft dependency
 
-* Configuration
+# Setup
 
-* Database creation
+The setup is easy and you don't have to do anything more than a regular PostgreSQL and Rails setup. After you clone this repo, built up the PostgreSQL and just run the `bin/rails db:setup`. If you don't want to use PostgreSQL, you can check the `config/database.yml`.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Before the setup, you may want to create an admin for login. Just look at the admin creation template in `db/seeds.rb`. Also, you can change the users role to admin in admins dashboard.
