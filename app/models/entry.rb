@@ -9,7 +9,7 @@ class Entry < ApplicationRecord
   validates :comment, presence: true
 
   def finished?
-    !!finished_at
+    !finished_at.nil?
   end
 
   def self.everything
