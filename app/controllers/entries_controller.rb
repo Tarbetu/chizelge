@@ -4,11 +4,11 @@
 class EntriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_entry, only: %i[show edit update destroy]
-  before_action :set_user, only: %i[create finish]
+  before_action :set_user, only: %i[index create finish]
 
   # GET /entries or /entries.json
   def index
-    @pagy, @entries = pagy Entry.order("created_at DESC")
+    @pagy, @entries = pagy @user.entries.order("created_at DESC")
   end
 
   # GET /entries/1 or /entries/1.json
