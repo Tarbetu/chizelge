@@ -63,4 +63,5 @@ gem 'pagy', '~> 5.6'
 # For Testing
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
+  gem "factory_bot_rails"
 end
