@@ -6,6 +6,10 @@ AllCops:
     - 'bin/{rails,rake}'
     - !ruby/regexp /old_and_unused\.rb$/
 
+StringLiterals:
+  Exclude:
+    - "**/*"
+
 BlockLength:
   Exclude:
     - "spec/**/*"
