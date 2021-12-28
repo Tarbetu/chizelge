@@ -2,7 +2,7 @@
 
 # Controller for Entry model, for more information check the app/models/entry.rb
 class EntriesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index]
   before_action :set_entry, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index create finish]
 
@@ -81,6 +81,11 @@ class EntriesController < ApplicationController
 
   # Define the devise user
   def set_user
+    unless user_signed_in?
+      redirect_to home_index_path
+      return
+    end
+
     @user = User.find(current_user["id"])
   end
 
