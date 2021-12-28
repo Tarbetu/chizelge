@@ -62,6 +62,10 @@ class EntriesController < ApplicationController
 
   # POST /entries/finish
   def finish
+    unless @user.working?
+      redirect_to new_entry_path, alert: "You should start working before finish"
+      return
+    end
     @entry = @user.last_work
     @entry.finished_at = Time.now
 
