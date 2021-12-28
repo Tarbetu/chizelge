@@ -17,16 +17,23 @@ RSpec.describe EntriesController, type: :controller do
   describe "GET #index" do
     login_user
     it "returns the entries mainpage" do
-      # Entry.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_successful # Belki de değildir?
+      expect(response).to be_successful
     end
   end
 
   describe "GET #index without logging in" do
     it "redirects to root_path" do
       get :index, params: {}, session: valid_session
-      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe "POST #create" do
+    login_user
+    it "creates new post and redirects to root_path" do
+      post :create, params: {}, session: valid_session
+      expect(response).to redirect_to(root_path)
     end
   end
 end
