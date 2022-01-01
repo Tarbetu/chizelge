@@ -63,13 +63,8 @@ RSpec.describe EntriesController, type: :controller do
     describe "if signed in" do
       login_user
       describe "if there is an ongoing job" do
+        FactoryBot.create(:entry)
         it "finishes the last job with notice" do
-          Entry.create!(
-            comment: "Killing who don't like Chinese food",
-            category: "Assasin",
-            user_id: 1
-          )
-
           post :finish
           expect(response).to redirect_to root_path
           expect(flash[:notice]).to be_present
@@ -77,7 +72,8 @@ RSpec.describe EntriesController, type: :controller do
       end
 
       describe "if there is no ongoing job" do
-        it "redirects to the main page with alert" do
+        Entry.delete_all
+        it "redirects to the new entry page with alert" do
           post :finish
           expect(response).to redirect_to new_entry_path
           expect(flash[:alert]).to be_present
