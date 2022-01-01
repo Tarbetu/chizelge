@@ -62,7 +62,6 @@ class EntriesController < ApplicationController
 
   # POST /entries/finish
   def finish
-    raise @user.working?.inspect
     if @user.working?
       @entry = @user.last_work
       @entry.finished_at = Time.now

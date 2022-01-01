@@ -76,29 +76,29 @@ RSpec.describe EntriesController, type: :controller do
           FactoryBot.create(:entry)
         end
 
-        it "returns to main page" do
+        xit "returns to main page" do
           expect(response).to redirect_to root_path
         end
 
-        it "has an notice flash" do
+        xit "has an notice flash" do
           expect(flash[:notice]).to be_present
         end
 
-        it "has not an alert flash" do
+        xit "has not an alert flash" do
           expect(flash[:alert]).not_to be_present
         end
       end
 
       describe "when there is no ongoing job" do
-        it "redirects to the new entry page" do
+        xit "redirects to the new entry page" do
           expect(response).to redirect_to new_entry_path
         end
 
-        it "has a alert flash" do
+        xit "has a alert flash" do
           expect(flash[:alert]).to be_present
         end
 
-        it "has not an notice flash" do
+        xit "has not an notice flash" do
           expect(flash[:notice]).not_to be_present
         end
       end
