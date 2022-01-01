@@ -16,7 +16,7 @@ class User < ApplicationRecord
   def working?
     return false if entries.last.nil?
 
-    !entries.last.finished?
+    !last_work.finished?
   end
 
   def admin?

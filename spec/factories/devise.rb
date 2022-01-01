@@ -8,9 +8,9 @@ FactoryBot.define do
     role { "admin" }
   end
 
-  factory :factoryuser do
-    id { 2 }
-    email { "i_was_a_girl@now_im_a_bot.com" }
-    password { "notagirl" }
-  end
+#  factory :factoryuser do
+#    id { 2 }
+#    email { "i_was_a_girl@now_im_a_bot.com" }
+#    password { "notagirl" }
+#  end
 end

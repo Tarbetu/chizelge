@@ -62,17 +62,14 @@ class EntriesController < ApplicationController
 
   # POST /entries/finish
   def finish
-    unless @user.working?
+    raise @user.working?.inspect
+    if @user.working?
+      @entry = @user.last_work
+      @entry.finished_at = Time.now
+      @entry.save
+      redirect_to root_path, notice: "Well done!"
+    else
       redirect_to new_entry_path, alert: "You should start working before finish"
-      return
-    end
-    @entry = @user.last_work
-    @entry.finished_at = Time.now
-
-    @entry.save
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: "Well done!" }
-      format.json { head :no_content }
     end
   end
 
@@ -85,12 +82,11 @@ class EntriesController < ApplicationController
 
   # Define the devise user
   def set_user
-    unless user_signed_in?
+    if user_signed_in?
+      @user = User.find(current_user["id"])
+    else
       redirect_to home_index_path
-      return
     end
-
-    @user = User.find(current_user["id"])
   end
 
   # Only allow a list of trusted parameters through.
